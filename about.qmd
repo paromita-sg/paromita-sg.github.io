@@ -1,5 +1,16 @@
 ---
-title: "About Me"
+title: "Paromita Sengupta"
+image: images/paromita.jpg
+about:
+  template: solana
+  image-width: 10em
+  links:
+    - icon: github
+      text: GitHub
+      href: https://github.com/paromita-sg
+    - icon: linkedin
+      text: LinkedIn
+      href: https://www.linkedin.com/in/paromita-sengupta/
 ---
 
 ## Background
@@ -12,4 +23,4 @@ I decided to pursue a Master of Data Science at UBC because I want to build stro
 
 ## Outside of Data Science
 
-Outside of school and technology, I enjoy classical dance, music, performing, learning new choreography, and exploring creative projects. I also enjoy spending time with my community and finding ways to combine my technical and creative interests.
+Outside of school and technology, I enjoy classical dance, music, performing, learning new choreography, and exploring creative projects. I also love spending time outdoors, whether it’s hiking, exploring new places, or simply enjoying nature. I enjoy spending time with my community and finding ways to bring together my technical, creative, and personal interests.

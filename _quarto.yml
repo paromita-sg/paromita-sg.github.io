@@ -3,12 +3,15 @@ project:
   output-dir: docs
 
 website:
-  title: "My Portfolio"
+  title: "Paromita Sengupta"
   navbar:
     left:
       - href: index.qmd
         text: Home
-      - about.qmd
+      - href: about.qmd
+        text: About
+      - href: blog.qmd
+        text: Blog 
 
 format:
   html:
@@ -16,7 +19,7 @@ format:
       - cosmo
       - brand
     css: styles.css
-    toc: true
+    toc: false
 
 
 
