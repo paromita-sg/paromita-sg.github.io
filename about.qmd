@@ -1,5 +1,15 @@
 ---
-title: "About"
+title: "About Me"
 ---
 
-About this site
+## Background
+
+I studied Computer Science at the University of Saskatchewan and have worked in the Canadian technology sector for several years. My experience has included software development, Research in data-related projects, and working with different technologies across startups and other organizations.
+
+## Why Data Science?
+
+I decided to pursue a Master of Data Science at UBC because I want to build stronger skills in statistics, data analysis, and machine learning. I am especially interested in applying data science to practical problems and eventually working on projects that can have a meaningful impact.
+
+## Outside of Data Science
+
+Outside of school and technology, I enjoy classical dance, music, performing, learning new choreography, and exploring creative projects. I also enjoy spending time with my community and finding ways to combine my technical and creative interests.
