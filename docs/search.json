@@ -1,45 +1,10 @@
 [
   {
-    "objectID": "blog.html",
-    "href": "blog.html",
-    "title": "Blogs",
-    "section": "",
-    "text": "My first weeks in MDS\n\n\n\n\n\n\n\n\nSep 13, 2026\n\n\nParomita Sengupta\n\n\n\n\n\nNo matching items"
-  },
-  {
     "objectID": "index.html",
     "href": "index.html",
     "title": "Paromita Sengupta",
     "section": "",
     "text": "Hello, my name is Paromita Sengupta. I grew up in Bangladesh and later moved to Canada to pursue my undergraduate degree at the University of Saskatchewan, where I graduated with a bachelor’s degree in Computer Science. Before starting the Master of Data Science program at UBC, I worked in the Canadian tech industry as a full-stack software engineer, building web applications and data-driven systems. Through the MDS program, I hope to strengthen my skills in data science, machine learning, and AI. After graduating, I hope to apply these skills to practical, data-focused technical projects in Canada."
-  },
-  {
-    "objectID": "posts/first-weeks/index.html",
-    "href": "posts/first-weeks/index.html",
-    "title": "My first weeks in MDS",
-    "section": "",
-    "text": "Orientation day on campus."
-  },
-  {
-    "objectID": "posts/first-weeks/index.html#getting-started",
-    "href": "posts/first-weeks/index.html#getting-started",
-    "title": "My first weeks in MDS",
-    "section": "Getting Started",
-    "text": "Getting Started\nStarting the Master of Data Science program at UBC has been an exciting but challenging experience. After being away from school for several years, getting back into a full-time academic routine has taken some adjustment."
-  },
-  {
-    "objectID": "posts/first-weeks/index.html#the-first-few-weeks",
-    "href": "posts/first-weeks/index.html#the-first-few-weeks",
-    "title": "My first weeks in MDS",
-    "section": "The First Few Weeks",
-    "text": "The First Few Weeks\nThe first few weeks have been a lot of learning and trying to keep up with a fast-paced program. I have been working with Python, R, statistics, Git, and Quarto, while also getting used to the workflow of working on assignments and projects.\nOne of the biggest challenges has been realizing how much there is to learn in a short amount of time. Some concepts take me longer to understand, but I am gradually becoming more comfortable with the tools and the way of thinking required in data science.\nAt the same time, being back on campus and meeting other students has been a positive part of the experience. It has been nice to be part of a community again and to learn alongside people with different backgrounds and experiences."
-  },
-  {
-    "objectID": "posts/first-weeks/index.html#looking-ahead",
-    "href": "posts/first-weeks/index.html#looking-ahead",
-    "title": "My first weeks in MDS",
-    "section": "Looking Ahead",
-    "text": "Looking Ahead\nI am looking forward to becoming more confident with the technical and statistical concepts I am learning. My goal is to build practical data science skills that I can eventually apply to real-world problems and meaningful projects."
   },
   {
     "objectID": "about.html",
@@ -68,5 +33,40 @@
     "title": "Paromita Sengupta",
     "section": "Outside of Data Science",
     "text": "Outside of Data Science\nOutside of school and technology, I enjoy classical dance, music, performing, learning new choreography, and exploring creative projects. I also love spending time outdoors, whether it’s hiking, exploring new places, or simply enjoying nature. I enjoy spending time with my community and finding ways to bring together my technical, creative, and personal interests."
+  },
+  {
+    "objectID": "blog.html",
+    "href": "blog.html",
+    "title": "Blogs",
+    "section": "",
+    "text": "My first weeks in MDS\n\n\n\n\n\n\n\n\nSep 13, 2026\n\n\nParomita Sengupta\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "posts/first-weeks/index.html",
+    "href": "posts/first-weeks/index.html",
+    "title": "My first weeks in MDS",
+    "section": "",
+    "text": "Orientation day on campus."
+  },
+  {
+    "objectID": "posts/first-weeks/index.html#getting-started",
+    "href": "posts/first-weeks/index.html#getting-started",
+    "title": "My first weeks in MDS",
+    "section": "Getting Started",
+    "text": "Getting Started\nStarting the Master of Data Science program at UBC has been an exciting but challenging experience. After being away from school for several years, getting back into a full-time academic routine has taken some adjustment."
+  },
+  {
+    "objectID": "posts/first-weeks/index.html#the-first-few-weeks",
+    "href": "posts/first-weeks/index.html#the-first-few-weeks",
+    "title": "My first weeks in MDS",
+    "section": "The First Few Weeks",
+    "text": "The First Few Weeks\nThe first few weeks have been a lot of learning and trying to keep up with a fast-paced program. I have been working with Python, R, statistics, Git, and Quarto, while also getting used to the workflow of working on assignments and projects.\nOne of the biggest challenges has been realizing how much there is to learn in a short amount of time. Some concepts take me longer to understand, but I am gradually becoming more comfortable with the tools and the way of thinking required in data science.\nAt the same time, being back on campus and meeting other students has been a positive part of the experience. It has been nice to be part of a community again and to learn alongside people with different backgrounds and experiences."
+  },
+  {
+    "objectID": "posts/first-weeks/index.html#looking-ahead",
+    "href": "posts/first-weeks/index.html#looking-ahead",
+    "title": "My first weeks in MDS",
+    "section": "Looking Ahead",
+    "text": "Looking Ahead\nI am looking forward to becoming more confident with the technical and statistical concepts I am learning. My goal is to build practical data science skills that I can eventually apply to real-world problems and meaningful projects."
   }
 ]
