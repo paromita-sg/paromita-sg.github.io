@@ -2,4 +2,5 @@
 **/*.quarto_ipynb
 _site/
 .DS_Store
+.venv/
 docs/site_files/
