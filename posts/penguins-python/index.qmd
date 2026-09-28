@@ -1,6 +1,6 @@
 ---
 title: "Bill length and depth in penguins: a Python analysis"
-author: "Paromita Sengupta"
+author: "PAROMITA SENGUPTA"
 date: "2026-09-28"
 categories: [Python, penguins, data analysis]
 jupyter: python3

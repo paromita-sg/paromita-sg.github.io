@@ -1,0 +1,130 @@
+---
+title: "Do heavier penguins have longer flippers? An R analysis"
+author: "PAROMITA SENGUPTA"
+date: "2026-09-28"
+categories: [R, penguins, data analysis]
+---
+
+## Introduction
+
+Penguins on the Palmer Archipelago come in three species that look quite
+different in size. In this post I use R to ask two simple questions:
+
+1. How does body mass differ between the three species?
+2. Within a species, do penguins with longer flippers weigh more?
+
+**Data:** [Palmer Penguins](https://allisonhorst.github.io/palmerpenguins/),
+Palmer Station Antarctica LTER. The data ship inside the `palmerpenguins` R
+package, so nothing is downloaded when this page is built. The data are
+released under the [CC0 licence](https://creativecommons.org/publicdomain/zero/1.0/).
+
+Citation: Horst AM, Hill AP, Gorman KB (2020). *palmerpenguins: Palmer
+Archipelago (Antarctica) penguin data.* R package version 0.1.0.
+<https://doi.org/10.5281/zenodo.3960218>. The measurements were collected by
+Gorman KB, Williams TD, Fraser WR (2014), *PLoS ONE* 9(3): e90081.
+
+## Setup
+
+The setup chunk loads packages. I silence package start-up messages and
+warnings on purpose, because they add noise and no information.
+
+```{r}
+#| label: setup
+#| message: false
+#| warning: false
+library(palmerpenguins)
+library(dplyr)
+library(ggplot2)
+library(knitr)
+```
+
+## Looking at the data
+
+```{r}
+#| label: load-data
+glimpse(penguins)
+```
+
+Some birds have missing measurements. I count them per column before deciding
+what to do.
+
+```{r}
+#| label: missing-values
+penguins |>
+  summarise(across(everything(), ~ sum(is.na(.x)))) |>
+  select(species, body_mass_g, flipper_length_mm, sex)
+```
+
+```{r}
+#| label: clean-data
+penguins_clean <- penguins |>
+  filter(!is.na(body_mass_g), !is.na(flipper_length_mm))
+
+n_dropped <- nrow(penguins) - nrow(penguins_clean)
+```
+
+I dropped `{r} n_dropped` birds that lacked a body mass or flipper length,
+leaving `{r} nrow(penguins_clean)` penguins.
+
+## Body mass by species
+
+```{r}
+#| label: tbl-mass-summary
+#| tbl-cap: "Body mass (g) summarised by species."
+mass_summary <- penguins_clean |>
+  group_by(species) |>
+  summarise(
+    n = n(),
+    mean_mass = round(mean(body_mass_g)),
+    sd_mass = round(sd(body_mass_g)),
+    min_mass = min(body_mass_g),
+    max_mass = max(body_mass_g)
+  )
+
+kable(mass_summary)
+```
+
+```{r}
+#| label: fig-penguin-mass
+#| fig-cap: "Body mass of penguins by species."
+ggplot(penguins_clean, aes(x = species, y = body_mass_g, fill = species)) +
+  geom_boxplot(show.legend = FALSE) +
+  labs(x = "Species", y = "Body mass (g)") +
+  theme_minimal()
+```
+
+@fig-penguin-mass and @tbl-mass-summary show that Gentoo penguins are the
+heaviest, with a mean of
+`{r} mass_summary$mean_mass[mass_summary$species == "Gentoo"]` g. Adelie and
+Chinstrap penguins are much lighter and overlap heavily with each other.
+
+## Flipper length and body mass
+
+```{r}
+#| label: fig-flipper-mass
+#| fig-cap: "Flipper length against body mass. Each species has its own fitted line."
+ggplot(penguins_clean,
+       aes(x = flipper_length_mm, y = body_mass_g, colour = species)) +
+  geom_point(alpha = 0.6) +
+  geom_smooth(method = "lm", se = FALSE, formula = y ~ x) +
+  labs(x = "Flipper length (mm)", y = "Body mass (g)", colour = "Species") +
+  theme_minimal()
+```
+
+To put a number on the trend, I fit a linear model of body mass on flipper
+length, with species as an additional predictor.
+
+```{r}
+#| label: linear-model
+model <- lm(body_mass_g ~ flipper_length_mm + species, data = penguins_clean)
+kable(round(summary(model)$coefficients, 2))
+```
+
+## What I found
+
+- Gentoo penguins are clearly heavier than the other two species.
+- Within the data, longer flippers go with heavier birds. The model estimates
+  about `{r} round(coef(model)["flipper_length_mm"], 1)` g more body mass for
+  each extra millimetre of flipper, holding species fixed.
+- This is an observational association. It says nothing about whether flipper
+  length causes weight.
