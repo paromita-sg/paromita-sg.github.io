@@ -1,0 +1,146 @@
+---
+title: "Bill length and depth in penguins: a Python analysis"
+author: "Paromita Sengupta"
+date: "2026-09-28"
+categories: [Python, penguins, data analysis]
+jupyter: python3
+---
+
+## Introduction
+
+In my R post I looked at body mass and flipper length. Here I use Python on
+the same dataset to ask a different question: Is a penguin's bill length
+related to its bill depth? The answer turns out to depend on whether you
+look at all penguins together or one species at a time.
+
+**Data:** [Palmer Penguins](https://allisonhorst.github.io/palmerpenguins/),
+Palmer Station Antarctica LTER. The data ship inside the `palmerpenguins`
+Python package, so nothing is downloaded when this page is built. The data are
+released under the [CC0 licence](https://creativecommons.org/publicdomain/zero/1.0/).
+
+Citation: Horst AM, Hill AP, Gorman KB (2020). *palmerpenguins: Palmer
+Archipelago (Antarctica) penguin data.* <https://doi.org/10.5281/zenodo.3960218>.
+The measurements were collected by Gorman KB, Williams TD, Fraser WR (2014),
+*PLoS ONE* 9(3): e90081.
+
+## Setup
+
+The setup chunk holds imports. I silence warnings and messages on purpose so
+that library noise does not clutter the page.
+
+```{python}
+#| label: setup
+#| message: false
+#| warning: false
+import sys
+
+import matplotlib.pyplot as plt
+import numpy as np
+import pandas as pd
+from palmerpenguins import load_penguins
+```
+
+To confirm this page was built with the project's own environment, here is
+the Python interpreter in use. It should end in `.venv/bin/python`.
+
+```{python}
+#| label: python-path
+print(sys.executable)
+```
+
+## Looking at the data
+
+```{python}
+#| label: load-data
+penguins = load_penguins()
+print(penguins.shape)
+penguins.head()
+```
+
+Some birds have missing measurements. I count them per column before deciding
+what to do.
+
+```{python}
+#| label: missing-values
+penguins.isna().sum()
+```
+
+```{python}
+#| label: clean-data
+bill_cols = ["bill_length_mm", "bill_depth_mm"]
+penguins_clean = penguins.dropna(subset=bill_cols)
+
+n_dropped = len(penguins) - len(penguins_clean)
+```
+
+I dropped `{python} n_dropped` birds that lacked a bill measurement, leaving
+`{python} len(penguins_clean)` penguins.
+
+## Bill size by species
+
+```{python}
+#| label: tbl-species-means
+#| tbl-cap: "Mean bill length and depth (mm) by species."
+penguins_clean.groupby("species")[bill_cols].mean().round(1)
+```
+
+## Pooled trend versus within-species trend
+
+First, the correlation across all penguins together. Then, the correlation
+inside each species.
+
+```{python}
+#| label: correlations
+overall_r = penguins_clean["bill_length_mm"].corr(penguins_clean["bill_depth_mm"])
+
+within_r = (
+    penguins_clean.groupby("species")[bill_cols]
+    .apply(lambda g: g["bill_length_mm"].corr(g["bill_depth_mm"]))
+    .rename("correlation")
+)
+
+print(f"All penguins pooled: r = {overall_r:.2f}")
+within_r.round(2).to_frame()
+```
+
+```{python}
+#| label: fig-bill-scatter
+#| fig-cap: "Bill length against bill depth. Left: all penguins with one pooled trend line. Right: the same points with one trend line per species."
+fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(11, 4.5), sharex=True, sharey=True)
+
+x_all = penguins_clean["bill_length_mm"]
+y_all = penguins_clean["bill_depth_mm"]
+
+ax1.scatter(x_all, y_all, alpha=0.6, color="grey")
+slope, intercept = np.polyfit(x_all, y_all, 1)
+xs = np.linspace(x_all.min(), x_all.max(), 100)
+ax1.plot(xs, slope * xs + intercept, color="black")
+ax1.set_title("All penguins pooled")
+
+for name, group in penguins_clean.groupby("species"):
+    ax2.scatter(group["bill_length_mm"], group["bill_depth_mm"], label=name, alpha=0.6)
+    s, i = np.polyfit(group["bill_length_mm"], group["bill_depth_mm"], 1)
+    xs = np.linspace(group["bill_length_mm"].min(), group["bill_length_mm"].max(), 50)
+    ax2.plot(xs, s * xs + i)
+ax2.set_title("Split by species")
+ax2.legend(title="Species")
+
+for ax in (ax1, ax2):
+    ax.set_xlabel("Bill length (mm)")
+ax1.set_ylabel("Bill depth (mm)")
+plt.tight_layout()
+plt.show()
+```
+
+## What I found
+
+- Across all penguins pooled, bill length and bill depth are negatively
+  correlated (r = `{python} round(overall_r, 2)`). @fig-bill-scatter shows this
+  in the left panel.
+- Within each species the relationship reverses. The correlations range from
+  `{python} round(within_r.min(), 2)` to `{python} round(within_r.max(), 2)`,
+  all positive.
+- The pooled trend is misleading because species differ in both measurements:
+  Gentoo penguins have long but shallow bills, and Adelie penguins have short
+  but deep ones. This is an example of Simpson's paradox, and it is a good
+  reason to look at group structure before trusting a pooled correlation.

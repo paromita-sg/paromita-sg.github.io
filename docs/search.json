@@ -1,45 +1,17 @@
 [
   {
+    "objectID": "blog.html",
+    "href": "blog.html",
+    "title": "Blogs",
+    "section": "",
+    "text": "Bill length and depth in penguins: a Python analysis\n\n\n\n\n\n\n\n\nSep 28, 2026\n\n\nParomita Sengupta\n\n\n\n\n\n\n\n\n\n\n\n\nMy first weeks in MDS\n\n\n\n\n\n\n\n\nSep 13, 2026\n\n\nParomita Sengupta\n\n\n\n\n\nNo matching items"
+  },
+  {
     "objectID": "index.html",
     "href": "index.html",
     "title": "Paromita Sengupta",
     "section": "",
     "text": "Hello, my name is Paromita Sengupta. I grew up in Bangladesh and later moved to Canada to pursue my undergraduate degree at the University of Saskatchewan, where I graduated with a bachelor’s degree in Computer Science. Before starting the Master of Data Science program at UBC, I worked in the Canadian tech industry as a full-stack software engineer, building web applications and data-driven systems. Through the MDS program, I hope to strengthen my skills in data science, machine learning, and AI. After graduating, I hope to apply these skills to practical, data-focused technical projects in Canada."
-  },
-  {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "Paromita Sengupta",
-    "section": "",
-    "text": "I studied Computer Science at the University of Saskatchewan and have worked in the Canadian technology sector for several years. My experience has included software development, Research in data-related projects, and working with different technologies across startups and other organizations."
-  },
-  {
-    "objectID": "about.html#background",
-    "href": "about.html#background",
-    "title": "Paromita Sengupta",
-    "section": "",
-    "text": "I studied Computer Science at the University of Saskatchewan and have worked in the Canadian technology sector for several years. My experience has included software development, Research in data-related projects, and working with different technologies across startups and other organizations."
-  },
-  {
-    "objectID": "about.html#why-data-science",
-    "href": "about.html#why-data-science",
-    "title": "Paromita Sengupta",
-    "section": "Why Data Science?",
-    "text": "Why Data Science?\nI decided to pursue a Master of Data Science at UBC because I want to build stronger skills in statistics, data analysis, and machine learning. I am especially interested in applying data science to practical problems and eventually working on projects that can have a meaningful impact."
-  },
-  {
-    "objectID": "about.html#outside-of-data-science",
-    "href": "about.html#outside-of-data-science",
-    "title": "Paromita Sengupta",
-    "section": "Outside of Data Science",
-    "text": "Outside of Data Science\nOutside of school and technology, I enjoy classical dance, music, performing, learning new choreography, and exploring creative projects. I also love spending time outdoors, whether it’s hiking, exploring new places, or simply enjoying nature. I enjoy spending time with my community and finding ways to bring together my technical, creative, and personal interests."
-  },
-  {
-    "objectID": "blog.html",
-    "href": "blog.html",
-    "title": "Blogs",
-    "section": "",
-    "text": "My first weeks in MDS\n\n\n\n\n\n\n\n\nSep 13, 2026\n\n\nParomita Sengupta\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "posts/first-weeks/index.html",
@@ -68,5 +40,82 @@
     "title": "My first weeks in MDS",
     "section": "Looking Ahead",
     "text": "Looking Ahead\nI am looking forward to becoming more confident with the technical and statistical concepts I am learning. My goal is to build practical data science skills that I can eventually apply to real-world problems and meaningful projects."
+  },
+  {
+    "objectID": "posts/penguins-python/index.html",
+    "href": "posts/penguins-python/index.html",
+    "title": "Bill length and depth in penguins: a Python analysis",
+    "section": "",
+    "text": "In my R post I looked at body mass and flipper length. Here I use Python on the same dataset to ask a different question: Is a penguin’s bill length related to its bill depth? The answer turns out to depend on whether you look at all penguins together or one species at a time.\nData: Palmer Penguins, Palmer Station Antarctica LTER. The data ship inside the palmerpenguins Python package, so nothing is downloaded when this page is built. The data are released under the CC0 licence.\nCitation: Horst AM, Hill AP, Gorman KB (2020). palmerpenguins: Palmer Archipelago (Antarctica) penguin data. https://doi.org/10.5281/zenodo.3960218. The measurements were collected by Gorman KB, Williams TD, Fraser WR (2014), PLoS ONE 9(3): e90081."
+  },
+  {
+    "objectID": "posts/penguins-python/index.html#introduction",
+    "href": "posts/penguins-python/index.html#introduction",
+    "title": "Bill length and depth in penguins: a Python analysis",
+    "section": "",
+    "text": "In my R post I looked at body mass and flipper length. Here I use Python on the same dataset to ask a different question: Is a penguin’s bill length related to its bill depth? The answer turns out to depend on whether you look at all penguins together or one species at a time.\nData: Palmer Penguins, Palmer Station Antarctica LTER. The data ship inside the palmerpenguins Python package, so nothing is downloaded when this page is built. The data are released under the CC0 licence.\nCitation: Horst AM, Hill AP, Gorman KB (2020). palmerpenguins: Palmer Archipelago (Antarctica) penguin data. https://doi.org/10.5281/zenodo.3960218. The measurements were collected by Gorman KB, Williams TD, Fraser WR (2014), PLoS ONE 9(3): e90081."
+  },
+  {
+    "objectID": "posts/penguins-python/index.html#setup",
+    "href": "posts/penguins-python/index.html#setup",
+    "title": "Bill length and depth in penguins: a Python analysis",
+    "section": "Setup",
+    "text": "Setup\nThe setup chunk holds imports. I silence warnings and messages on purpose so that library noise does not clutter the page.\n\nimport sys\n\nimport matplotlib.pyplot as plt\nimport numpy as np\nimport pandas as pd\nfrom palmerpenguins import load_penguins\n\nTo confirm this page was built with the project’s own environment, here is the Python interpreter in use. It should end in .venv/bin/python.\n\nprint(sys.executable)\n\n/Users/paromitasengupta/Projects/MDS/521/paromita-sg.github.io/.venv/bin/python3"
+  },
+  {
+    "objectID": "posts/penguins-python/index.html#looking-at-the-data",
+    "href": "posts/penguins-python/index.html#looking-at-the-data",
+    "title": "Bill length and depth in penguins: a Python analysis",
+    "section": "Looking at the data",
+    "text": "Looking at the data\n\npenguins = load_penguins()\nprint(penguins.shape)\npenguins.head()\n\n(344, 8)\n\n\n\n\n\n\n\n\n\nspecies\nisland\nbill_length_mm\nbill_depth_mm\nflipper_length_mm\nbody_mass_g\nsex\nyear\n\n\n\n\n0\nAdelie\nTorgersen\n39.1\n18.7\n181.0\n3750.0\nmale\n2007\n\n\n1\nAdelie\nTorgersen\n39.5\n17.4\n186.0\n3800.0\nfemale\n2007\n\n\n2\nAdelie\nTorgersen\n40.3\n18.0\n195.0\n3250.0\nfemale\n2007\n\n\n3\nAdelie\nTorgersen\nNaN\nNaN\nNaN\nNaN\nNaN\n2007\n\n\n4\nAdelie\nTorgersen\n36.7\n19.3\n193.0\n3450.0\nfemale\n2007\n\n\n\n\n\n\n\nSome birds have missing measurements. I count them per column before deciding what to do.\n\npenguins.isna().sum()\n\nspecies               0\nisland                0\nbill_length_mm        2\nbill_depth_mm         2\nflipper_length_mm     2\nbody_mass_g           2\nsex                  11\nyear                  0\ndtype: int64\n\n\n\nbill_cols = [\"bill_length_mm\", \"bill_depth_mm\"]\npenguins_clean = penguins.dropna(subset=bill_cols)\n\nn_dropped = len(penguins) - len(penguins_clean)\n\nI dropped 2 birds that lacked a bill measurement, leaving 342 penguins."
+  },
+  {
+    "objectID": "posts/penguins-python/index.html#bill-size-by-species",
+    "href": "posts/penguins-python/index.html#bill-size-by-species",
+    "title": "Bill length and depth in penguins: a Python analysis",
+    "section": "Bill size by species",
+    "text": "Bill size by species\n\npenguins_clean.groupby(\"species\")[bill_cols].mean().round(1)\n\n\n\nTable 1: Mean bill length and depth (mm) by species.\n\n\n\n\n\n\n\n\n\n\nbill_length_mm\nbill_depth_mm\n\n\nspecies\n\n\n\n\n\n\nAdelie\n38.8\n18.3\n\n\nChinstrap\n48.8\n18.4\n\n\nGentoo\n47.5\n15.0"
+  },
+  {
+    "objectID": "posts/penguins-python/index.html#pooled-trend-versus-within-species-trend",
+    "href": "posts/penguins-python/index.html#pooled-trend-versus-within-species-trend",
+    "title": "Bill length and depth in penguins: a Python analysis",
+    "section": "Pooled trend versus within-species trend",
+    "text": "Pooled trend versus within-species trend\nFirst, the correlation across all penguins together. Then, the correlation inside each species.\n\noverall_r = penguins_clean[\"bill_length_mm\"].corr(penguins_clean[\"bill_depth_mm\"])\n\nwithin_r = (\n    penguins_clean.groupby(\"species\")[bill_cols]\n    .apply(lambda g: g[\"bill_length_mm\"].corr(g[\"bill_depth_mm\"]))\n    .rename(\"correlation\")\n)\n\nprint(f\"All penguins pooled: r = {overall_r:.2f}\")\nwithin_r.round(2).to_frame()\n\nAll penguins pooled: r = -0.24\n\n\n\n\n\n\n\n\n\ncorrelation\n\n\nspecies\n\n\n\n\n\nAdelie\n0.39\n\n\nChinstrap\n0.65\n\n\nGentoo\n0.64\n\n\n\n\n\n\n\n\nfig, (ax1, ax2) = plt.subplots(1, 2, figsize=(11, 4.5), sharex=True, sharey=True)\n\nx_all = penguins_clean[\"bill_length_mm\"]\ny_all = penguins_clean[\"bill_depth_mm\"]\n\nax1.scatter(x_all, y_all, alpha=0.6, color=\"grey\")\nslope, intercept = np.polyfit(x_all, y_all, 1)\nxs = np.linspace(x_all.min(), x_all.max(), 100)\nax1.plot(xs, slope * xs + intercept, color=\"black\")\nax1.set_title(\"All penguins pooled\")\n\nfor name, group in penguins_clean.groupby(\"species\"):\n    ax2.scatter(group[\"bill_length_mm\"], group[\"bill_depth_mm\"], label=name, alpha=0.6)\n    s, i = np.polyfit(group[\"bill_length_mm\"], group[\"bill_depth_mm\"], 1)\n    xs = np.linspace(group[\"bill_length_mm\"].min(), group[\"bill_length_mm\"].max(), 50)\n    ax2.plot(xs, s * xs + i)\nax2.set_title(\"Split by species\")\nax2.legend(title=\"Species\")\n\nfor ax in (ax1, ax2):\n    ax.set_xlabel(\"Bill length (mm)\")\nax1.set_ylabel(\"Bill depth (mm)\")\nplt.tight_layout()\nplt.show()\n\n\n\n\n\n\n\nFigure 1: Bill length against bill depth. Left: all penguins with one pooled trend line. Right: the same points with one trend line per species."
+  },
+  {
+    "objectID": "posts/penguins-python/index.html#what-i-found",
+    "href": "posts/penguins-python/index.html#what-i-found",
+    "title": "Bill length and depth in penguins: a Python analysis",
+    "section": "What I found",
+    "text": "What I found\n\nAcross all penguins pooled, bill length and bill depth are negatively correlated (r = np.float64(-0.24)). Figure 1 shows this in the left panel.\nWithin each species the relationship reverses. The correlations range from np.float64(0.39) to np.float64(0.65), all positive.\nThe pooled trend is misleading because species differ in both measurements: Gentoo penguins have long but shallow bills, and Adelie penguins have short but deep ones. This is an example of Simpson’s paradox, and it is a good reason to look at group structure before trusting a pooled correlation."
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "Paromita Sengupta",
+    "section": "",
+    "text": "I studied Computer Science at the University of Saskatchewan and have worked in the Canadian technology sector for several years. My experience has included software development, Research in data-related projects, and working with different technologies across startups and other organizations."
+  },
+  {
+    "objectID": "about.html#background",
+    "href": "about.html#background",
+    "title": "Paromita Sengupta",
+    "section": "",
+    "text": "I studied Computer Science at the University of Saskatchewan and have worked in the Canadian technology sector for several years. My experience has included software development, Research in data-related projects, and working with different technologies across startups and other organizations."
+  },
+  {
+    "objectID": "about.html#why-data-science",
+    "href": "about.html#why-data-science",
+    "title": "Paromita Sengupta",
+    "section": "Why Data Science?",
+    "text": "Why Data Science?\nI decided to pursue a Master of Data Science at UBC because I want to build stronger skills in statistics, data analysis, and machine learning. I am especially interested in applying data science to practical problems and eventually working on projects that can have a meaningful impact."
+  },
+  {
+    "objectID": "about.html#outside-of-data-science",
+    "href": "about.html#outside-of-data-science",
+    "title": "Paromita Sengupta",
+    "section": "Outside of Data Science",
+    "text": "Outside of Data Science\nOutside of school and technology, I enjoy classical dance, music, performing, learning new choreography, and exploring creative projects. I also love spending time outdoors, whether it’s hiking, exploring new places, or simply enjoying nature. I enjoy spending time with my community and finding ways to bring together my technical, creative, and personal interests."
   }
 ]
