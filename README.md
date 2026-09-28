@@ -13,10 +13,10 @@ Install these before you clone. The versions are the ones I built the site with.
 
 | Tool   | Version I used | Get it |
 |--------|----------------|--------|
-| Git    | X.Y.Z          | https://git-scm.com/downloads |
-| Quarto | X.Y.Z          | https://quarto.org/docs/get-started/ |
-| uv     | X.Y.Z          | https://docs.astral.sh/uv/getting-started/installation/ |
-| R      | X.Y.Z          | https://cran.r-project.org/ |
+| Git    | 2.39.5         | https://git-scm.com/downloads |
+| Quarto | 1.10.18        | https://quarto.org/docs/get-started/ |
+| uv     | 0.12.07        | https://docs.astral.sh/uv/getting-started/installation/ |
+| R      | 4.6.1          | https://cran.r-project.org/ |
 
 - You do **not** need to install Python yourself. `uv` downloads Python 3.14
   (pinned in `.python-version`).
