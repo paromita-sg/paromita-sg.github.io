@@ -4,7 +4,7 @@
     "href": "blog.html",
     "title": "Blogs",
     "section": "",
-    "text": "Bill length and depth in penguins: a Python analysis\n\n\n\n\n\n\n\n\nSep 28, 2026\n\n\nParomita Sengupta\n\n\n\n\n\n\n\n\n\n\n\n\nMy first weeks in MDS\n\n\n\n\n\n\n\n\nSep 13, 2026\n\n\nParomita Sengupta\n\n\n\n\n\nNo matching items"
+    "text": "Do heavier penguins have longer flippers? An R analysis\n\n\n\n\n\n\n\n\nSep 28, 2026\n\n\nPAROMITA SENGUPTA\n\n\n\n\n\n\n\n\n\n\n\n\nBill length and depth in penguins: a Python analysis\n\n\n\n\n\n\n\n\nSep 28, 2026\n\n\nPAROMITA SENGUPTA\n\n\n\n\n\n\n\n\n\n\n\n\nMy first weeks in MDS\n\n\n\n\n\n\n\n\nSep 13, 2026\n\n\nParomita Sengupta\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "index.html",
@@ -12,6 +12,55 @@
     "title": "Paromita Sengupta",
     "section": "",
     "text": "Hello, my name is Paromita Sengupta. I grew up in Bangladesh and later moved to Canada to pursue my undergraduate degree at the University of Saskatchewan, where I graduated with a bachelor’s degree in Computer Science. Before starting the Master of Data Science program at UBC, I worked in the Canadian tech industry as a full-stack software engineer, building web applications and data-driven systems. Through the MDS program, I hope to strengthen my skills in data science, machine learning, and AI. After graduating, I hope to apply these skills to practical, data-focused technical projects in Canada."
+  },
+  {
+    "objectID": "posts/penguins-r/index.html",
+    "href": "posts/penguins-r/index.html",
+    "title": "Do heavier penguins have longer flippers? An R analysis",
+    "section": "",
+    "text": "Penguins on the Palmer Archipelago come in three species that look quite different in size. In this post I use R to ask two simple questions:\n\nHow does body mass differ between the three species?\nWithin a species, do penguins with longer flippers weigh more?\n\nData: Palmer Penguins, Palmer Station Antarctica LTER. The data ship inside the palmerpenguins R package, so nothing is downloaded when this page is built. The data are released under the CC0 licence.\nCitation: Horst AM, Hill AP, Gorman KB (2020). palmerpenguins: Palmer Archipelago (Antarctica) penguin data. R package version 0.1.0. https://doi.org/10.5281/zenodo.3960218. The measurements were collected by Gorman KB, Williams TD, Fraser WR (2014), PLoS ONE 9(3): e90081."
+  },
+  {
+    "objectID": "posts/penguins-r/index.html#introduction",
+    "href": "posts/penguins-r/index.html#introduction",
+    "title": "Do heavier penguins have longer flippers? An R analysis",
+    "section": "",
+    "text": "Penguins on the Palmer Archipelago come in three species that look quite different in size. In this post I use R to ask two simple questions:\n\nHow does body mass differ between the three species?\nWithin a species, do penguins with longer flippers weigh more?\n\nData: Palmer Penguins, Palmer Station Antarctica LTER. The data ship inside the palmerpenguins R package, so nothing is downloaded when this page is built. The data are released under the CC0 licence.\nCitation: Horst AM, Hill AP, Gorman KB (2020). palmerpenguins: Palmer Archipelago (Antarctica) penguin data. R package version 0.1.0. https://doi.org/10.5281/zenodo.3960218. The measurements were collected by Gorman KB, Williams TD, Fraser WR (2014), PLoS ONE 9(3): e90081."
+  },
+  {
+    "objectID": "posts/penguins-r/index.html#setup",
+    "href": "posts/penguins-r/index.html#setup",
+    "title": "Do heavier penguins have longer flippers? An R analysis",
+    "section": "Setup",
+    "text": "Setup\nThe setup chunk loads packages. I silence package start-up messages and warnings on purpose, because they add noise and no information.\n\nlibrary(palmerpenguins)\nlibrary(dplyr)\nlibrary(ggplot2)\nlibrary(knitr)"
+  },
+  {
+    "objectID": "posts/penguins-r/index.html#looking-at-the-data",
+    "href": "posts/penguins-r/index.html#looking-at-the-data",
+    "title": "Do heavier penguins have longer flippers? An R analysis",
+    "section": "Looking at the data",
+    "text": "Looking at the data\n\nglimpse(penguins)\n\nRows: 344\nColumns: 8\n$ species           &lt;fct&gt; Adelie, Adelie, Adelie, Adelie, Adelie, Adelie, Adel…\n$ island            &lt;fct&gt; Torgersen, Torgersen, Torgersen, Torgersen, Torgerse…\n$ bill_length_mm    &lt;dbl&gt; 39.1, 39.5, 40.3, NA, 36.7, 39.3, 38.9, 39.2, 34.1, …\n$ bill_depth_mm     &lt;dbl&gt; 18.7, 17.4, 18.0, NA, 19.3, 20.6, 17.8, 19.6, 18.1, …\n$ flipper_length_mm &lt;int&gt; 181, 186, 195, NA, 193, 190, 181, 195, 193, 190, 186…\n$ body_mass_g       &lt;int&gt; 3750, 3800, 3250, NA, 3450, 3650, 3625, 4675, 3475, …\n$ sex               &lt;fct&gt; male, female, female, NA, female, male, female, male…\n$ year              &lt;int&gt; 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007…\n\n\nSome birds have missing measurements. I count them per column before deciding what to do.\n\npenguins |&gt;\n  summarise(across(everything(), ~ sum(is.na(.x)))) |&gt;\n  select(species, body_mass_g, flipper_length_mm, sex)\n\n# A tibble: 1 × 4\n  species body_mass_g flipper_length_mm   sex\n    &lt;int&gt;       &lt;int&gt;             &lt;int&gt; &lt;int&gt;\n1       0           2                 2    11\n\n\n\npenguins_clean &lt;- penguins |&gt;\n  filter(!is.na(body_mass_g), !is.na(flipper_length_mm))\n\nn_dropped &lt;- nrow(penguins) - nrow(penguins_clean)\n\nI dropped 2 birds that lacked a body mass or flipper length, leaving 342 penguins."
+  },
+  {
+    "objectID": "posts/penguins-r/index.html#body-mass-by-species",
+    "href": "posts/penguins-r/index.html#body-mass-by-species",
+    "title": "Do heavier penguins have longer flippers? An R analysis",
+    "section": "Body mass by species",
+    "text": "Body mass by species\n\nmass_summary &lt;- penguins_clean |&gt;\n  group_by(species) |&gt;\n  summarise(\n    n = n(),\n    mean_mass = round(mean(body_mass_g)),\n    sd_mass = round(sd(body_mass_g)),\n    min_mass = min(body_mass_g),\n    max_mass = max(body_mass_g)\n  )\n\nkable(mass_summary)\n\n\n\nTable 1: Body mass (g) summarised by species.\n\n\n\n\n\n\nspecies\nn\nmean_mass\nsd_mass\nmin_mass\nmax_mass\n\n\n\n\nAdelie\n151\n3701\n459\n2850\n4775\n\n\nChinstrap\n68\n3733\n384\n2700\n4800\n\n\nGentoo\n123\n5076\n504\n3950\n6300\n\n\n\n\n\n\n\n\n\nggplot(penguins_clean, aes(x = species, y = body_mass_g, fill = species)) +\n  geom_boxplot(show.legend = FALSE) +\n  labs(x = \"Species\", y = \"Body mass (g)\") +\n  theme_minimal()\n\n\n\n\n\n\n\nFigure 1: Body mass of penguins by species.\n\n\n\n\n\nFigure 1 and Table 1 show that Gentoo penguins are the heaviest, with a mean of 5076 g. Adelie and Chinstrap penguins are much lighter and overlap heavily with each other."
+  },
+  {
+    "objectID": "posts/penguins-r/index.html#flipper-length-and-body-mass",
+    "href": "posts/penguins-r/index.html#flipper-length-and-body-mass",
+    "title": "Do heavier penguins have longer flippers? An R analysis",
+    "section": "Flipper length and body mass",
+    "text": "Flipper length and body mass\n\nggplot(penguins_clean,\n       aes(x = flipper_length_mm, y = body_mass_g, colour = species)) +\n  geom_point(alpha = 0.6) +\n  geom_smooth(method = \"lm\", se = FALSE, formula = y ~ x) +\n  labs(x = \"Flipper length (mm)\", y = \"Body mass (g)\", colour = \"Species\") +\n  theme_minimal()\n\n\n\n\n\n\n\nFigure 2: Flipper length against body mass. Each species has its own fitted line.\n\n\n\n\n\nTo put a number on the trend, I fit a linear model of body mass on flipper length, with species as an additional predictor.\n\nmodel &lt;- lm(body_mass_g ~ flipper_length_mm + species, data = penguins_clean)\nkable(round(summary(model)$coefficients, 2))\n\n\n\n\n\nEstimate\nStd. Error\nt value\nPr(&gt;|t|)\n\n\n\n\n(Intercept)\n-4031.48\n584.15\n-6.90\n0.00\n\n\nflipper_length_mm\n40.71\n3.07\n13.25\n0.00\n\n\nspeciesChinstrap\n-206.51\n57.73\n-3.58\n0.00\n\n\nspeciesGentoo\n266.81\n95.26\n2.80\n0.01"
+  },
+  {
+    "objectID": "posts/penguins-r/index.html#what-i-found",
+    "href": "posts/penguins-r/index.html#what-i-found",
+    "title": "Do heavier penguins have longer flippers? An R analysis",
+    "section": "What I found",
+    "text": "What I found\n\nGentoo penguins are clearly heavier than the other two species.\nWithin the data, longer flippers go with heavier birds. The model estimates about 40.7 g more body mass for each extra millimetre of flipper, holding species fixed.\nThis is an observational association. It says nothing about whether flipper length causes weight."
   },
   {
     "objectID": "posts/first-weeks/index.html",
