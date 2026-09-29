@@ -1,10 +1,18 @@
+# Quarto
 /.quarto/
-**/*.quarto_ipynb
 _site/
-.DS_Store
+**/*.quarto_ipynb
+
+# Python (uv)
 .venv/
+__pycache__/
+.ipynb_checkpoints/
+
+# R (renv)
+renv/library/
 .Rproj.user/
 .Rhistory
 .RData
-__pycache__/
-.ipynb_checkpoints/
+
+# macOS
+.DS_Store
